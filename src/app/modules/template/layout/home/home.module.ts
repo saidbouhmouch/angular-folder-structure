@@ -1,19 +1,12 @@
+import { LayoutModule } from './../../partials/layout.module';
 import { HomeComponent } from './home.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
-import { NavBarComponent } from '../../partials/navBar/navBar.component';
-import { SideBarComponent } from '../../partials/sideBar/sideBar.component';
-import { FooterComponent } from '../../partials/footer/footer.component';
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    NavBarComponent,
-    SideBarComponent,
-    FooterComponent,
-  ],
-  imports: [CommonModule, HomeRoutingModule],
+  declarations: [HomeComponent],
+  imports: [CommonModule, HomeRoutingModule, LayoutModule],
 })
 export class HomeModule {}
