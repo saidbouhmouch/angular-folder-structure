@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LocalStorageService } from '../';
+import { LocalStorageService } from '../storage/localstorage.service';
 
 export interface ICredentials {
   username: string;
@@ -17,12 +17,13 @@ const credentialsKey = 'TOKEN';
   providedIn: 'root'
 })
 export class CredentialsService {
+
   private _credentials: ICredentials | null = null;
 
   constructor(private localStorageService: LocalStorageService) {
     const savedCredentials = this.localStorageService.getItem(credentialsKey);
     if (savedCredentials) {
-      this._credentials = savedCredentials;
+        this._credentials = savedCredentials;
     }
   }
 

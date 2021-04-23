@@ -10,7 +10,6 @@ export class StateService {
 
   constructor() {
   }
-
   
   changeSubject(key: string, data: any) {
     this.state.next({ key, data });

@@ -13,8 +13,13 @@ export class TranslateService {
     });
   }
 
-  get(key: string) {
+  get(key: any) {
     key = key.toLocaleLowerCase();
-    return this.content[key];
+    key = key.split('.') ;
+    let _content : any = this.content
+    for(var i=0;i<key.length; i++){
+      _content = _content[key[i]];
+   }
+    return _content;
   }
 }
