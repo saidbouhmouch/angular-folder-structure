@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment'
-import { StateService } from '../state/state.service'
 
 @Injectable({
   providedIn: 'root'
@@ -9,31 +8,35 @@ export class LocalStorageService {
 
 
   resourceName : string;
+  version: string = '';
 
-  constructor(private stateService : StateService) {
+  constructor() {
     this.resourceName = environment.appName;
+    this.version = environment.version;
   }
 
  
 
   setItem(key: string, data: any) {
-    key = this.resourceName + key.toLocaleUpperCase() + environment.version;
+    key = this.generateKey(key);
     localStorage.setItem(key, JSON.stringify(data));
-    //this.stateService.changeSubject(key,data);
   }
 
    removeItem(key) {
-    key = this.resourceName + key.toLocaleUpperCase() + environment.version;
+    key = this.generateKey(key);
     localStorage.removeItem(key);
-    //this.stateService.changeSubject(key,null);
   }
 
   getItem(key) {
-    key = this.resourceName + key.toLocaleUpperCase() + environment.version;
+    key = this.generateKey(key);
     if (localStorage.getItem(key)) {
       return JSON.parse(localStorage.getItem(key));
     }
     return undefined;
+  }
+
+  generateKey(key): string {
+    return this.resourceName.toLocaleUpperCase() +'-'+ key.toLocaleUpperCase() +'-'+ this.version;
   }
 
   
